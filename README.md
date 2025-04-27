@@ -48,6 +48,6 @@ Though slider is many of the times discouraged, but for a fast ui for changing v
 
 We normally use tab index wherever reqired for tab naviagtion but the shadcn components used already are working correctly so there was no need to add manually
 
-### Challenge: Enter should move to next field of add note form
+### Challenge: Enter should move to next field of add note form / form validations -  Not done due to Less time due to travel 
 
 This needs to be done but due to less time as I am travelling constantly during these days due to family matter till 28 april I could not get the time to do this and also the form validations but they can easily be added in normal time constraints with zod/yup validation in form schema with react form hook too .
