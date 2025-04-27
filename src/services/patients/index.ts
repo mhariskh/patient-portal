@@ -40,8 +40,6 @@ export const getPatients = async ({
 
   const { data, error } = await query;
 
-  console.log("data", data, filters, sortOption, search);
-
   if (error) {
     throw new Error(error.message);
   }
