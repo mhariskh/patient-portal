@@ -20,7 +20,11 @@ export const PatientDetail: FC = () => {
   } = usePatientDetail(id as string);
 
   if (isLoading) {
-    return <Spinner />;
+    return (
+      <div className="flex items-center justify-center size-full h-screen">
+        <Spinner className="size-10" />
+      </div>
+    );
   }
 
   if (isError) {
