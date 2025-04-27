@@ -28,8 +28,6 @@ export interface Patient {
   notes: PatientNote[];
 }
 
-// Sorting options defined as constants
-
 export interface PatientListFilters {
   status: PatientStatus;
   ageRange: [number, number];

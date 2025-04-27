@@ -1,6 +1,3 @@
-// this is page.tsx of patients folder inside app folder of next js
-// please import the patients list component
-
 import { PatientsList } from "@/features/patients/patients-list";
 
 export default function PatientsPage() {
