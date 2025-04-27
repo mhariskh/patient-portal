@@ -1,3 +1,4 @@
+import { QUERY_KEYS } from "@/constants/query-keys";
 import { addPatientNote, getPatientDetail } from "@/services/patients";
 import { Patient, PatientNote } from "@/types/patient";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -18,7 +19,7 @@ export const usePatientDetail = (id: string) => {
   const queryClient = useQueryClient();
 
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ["patientDetail", id],
+    queryKey: [QUERY_KEYS.patientDetail, id],
     queryFn: () => getPatientDetail({ id }),
     enabled: !!id,
   });
@@ -40,15 +41,17 @@ export const usePatientDetail = (id: string) => {
       });
     },
     onMutate: async ({ id, newNoteContent, title }) => {
-      await queryClient.cancelQueries({ queryKey: ["patientDetail", id] });
+      await queryClient.cancelQueries({
+        queryKey: [QUERY_KEYS.patientDetail, id],
+      });
 
       const previousData = queryClient.getQueryData<PatientDetailData>([
-        "patientDetail",
+        QUERY_KEYS.patientDetail,
         id,
       ]);
 
       queryClient.setQueryData(
-        ["patientDetail", id],
+        [QUERY_KEYS.patientDetail, id],
         (oldData: PatientDetailData | undefined) => {
           if (!oldData) return oldData;
 
@@ -75,7 +78,7 @@ export const usePatientDetail = (id: string) => {
     ) => {
       if (context?.previousData) {
         queryClient.setQueryData<PatientDetailData>(
-          ["patientDetail", id],
+          [QUERY_KEYS.patientDetail, id],
           context.previousData
         );
       }
@@ -89,7 +92,9 @@ export const usePatientDetail = (id: string) => {
       toast.success("Note added successfully!");
     },
     onSettled: (_, __, { id }) => {
-      queryClient.invalidateQueries({ queryKey: ["patientDetail", id] });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.patientDetail, id],
+      });
     },
   });
 

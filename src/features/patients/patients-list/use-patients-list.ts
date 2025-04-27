@@ -12,6 +12,7 @@ import {
   PATIENT_SORT_COLUMNS,
   PATIENT_SORT_ORDERS,
 } from "./patients-list.constants";
+import { QUERY_KEYS } from "@/constants/query-keys";
 
 export const usePatientsList = () => {
   const [search, setSearch] = useState<string>("");
@@ -35,7 +36,7 @@ export const usePatientsList = () => {
   );
 
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["patients", search, filters, sortOption],
+    queryKey: [QUERY_KEYS.allPatientsList, search, filters, sortOption],
     queryFn: () => getPatients({ filters, sortOption, search }),
   });
 
